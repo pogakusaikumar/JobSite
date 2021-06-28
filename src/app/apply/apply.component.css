@@ -1,0 +1,92 @@
+/* * {
+    font-family: 'Signika', sans-serif !important;
+} */
+
+.heading-apply{
+    font-size: 1.8rem;
+}
+.header-box{
+    text-align: center;
+    width: 100%;
+    line-height: 1.5rem;
+}
+
+h3 {
+    color: #777;
+}
+
+input {
+    height: 3.7rem;
+    width: 100%;
+    margin-top: 2.5rem;
+    border-radius: .5rem;
+    font-size: 1.7rem;
+    padding: 2rem 1rem;
+    border: .1rem solid #777;
+    color: #333;
+}
+
+input:focus {
+    outline: none;
+    border: .1rem solid #FF616D;
+    box-shadow: 0 0 2px #FF616D;
+}
+
+button {
+    margin-top: 3rem;
+    width: 100%;
+}
+
+input.ng-invalid.ng-touched {
+    border: .1rem solid red;
+    box-shadow: 0 0 2px red;
+}
+
+/* input.ng-invalid.ng-touched:focus {
+    outline: none;
+    border: .1rem solid red;
+} */
+.btn{
+    padding: .9rem 2.5rem;
+    color: #F9F9F9;
+    border: none;
+    font-style: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    /* background-color: #FF616D; */
+    background-color: #9d4edd;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+    transition: all .2s;
+  }
+  
+  .btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.39) 0px 2px 5px 0px;
+    color: #F9F9F9;
+    transform: translateY(-1px);
+  }
+  
+  .btn:active, .btn:focus {
+      color: #F9F9F9;
+    outline: none;
+  }
+  
+  .error-text {
+    color: red;
+    font-size: 1.4rem;
+    margin: 10rem .5rem;
+  }
+  
+  .btn-disabled {
+    padding: .9rem 2.5rem;
+    color: #fff;
+    border: none;
+    font-style: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    background-color: #9d4edd;
+    border-radius: .5rem;
+    cursor: not-allowed;
+    font-size: 1.7rem;
+  }

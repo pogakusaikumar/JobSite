@@ -1,0 +1,122 @@
+<app-header></app-header>
+<div class="container">
+
+    <p style="font-size: 30px;"><b>Post Job</b></p><br>
+   
+    
+    <div class="tabs is-large">
+        <ul>
+          <li ><a>1.Basic Details</a></li>
+          <li ><a>2.Job Details</a></li>
+          <li class="is-active"><a>3.Interview Information</a></li>
+          
+        </ul>
+    </div>
+    <form #thirdForm="ngForm" (ngSubmit)="submit()" novalidate>
+    <div>
+
+        <label for="interviewInfo" style="font-size: 20px;">Interview Information</label>
+    </div>
+    <div class="control">
+        <input class="input is-primary" type="text" id="companyName" name="companyName" placeholder="Company's Name" 
+         #companyName="ngModel" required [(ngModel)]="thirdform.companyName">
+         <div *ngIf="!companyName?.valid && (companyName?.dirty || companyName?.touched)" class="error-message">
+            <div *ngIf="companyName.errors?.required">
+                Company name is required
+            </div>
+          </div>
+    </div><br>
+    <div class="control">
+        <input class="input is-primary" type="text" id="recruitersName" name="recruitersName"
+         placeholder="Recruiter's Name"
+          #recruitersName="ngModel" required [(ngModel)]="thirdform.recruitersName">
+          <div *ngIf="!recruitersName?.valid && (recruitersName?.dirty || recruitersName?.touched)" class="error-message">
+            <div *ngIf="recruitersName.errors?.required">
+                Recruiters name is required
+            </div>
+          </div>
+    </div><br>
+    <div class="control">
+        <input class="input is-primary" type="number" id="hRwhatsappNumber" name="hRwhatsappNumber" 
+         placeholder="HR Mobile number"
+         required minlength="10" #hRwhatsappNumber="ngModel"  [(ngModel)]="thirdform.hRwhatsappNumber">
+          <div *ngIf="!hRwhatsappNumber?.valid && (hRwhatsappNumber?.dirty || hRwhatsappNumber?.touched)" class="error-message">
+            <div *ngIf="hRwhatsappNumber.errors?.required">
+              HR number is required
+            </div>
+            <div *ngIf="hRwhatsappNumber.errors?.length">
+                HR number Length is {{hRwhatsappNumber.errors?.minlength?.requiredLength}}
+              </div>
+          </div>
+    </div><br>
+    
+    <div class="form-group">
+    <div class="control">
+        
+          <input type="email"  class="form-control"  class="input is-primary" id="emailid" name="emailid" placeholder="Contact Email"
+           #emailid="ngModel" required email [(ngModel)]="thirdform.contactEmail" >
+           <div *ngIf="!emailid?.valid && (emailid?.dirty || emailid?.touched)" class="error-message">
+            <div *ngIf="emailid.errors?.required">
+              Email is required
+            </div>
+            <div *ngIf="emailid.errors?.email">
+                Invalid Email Address
+              </div>
+          </div>
+        
+    </div><br>
+    </div>
+
+    <div class="control">
+        <label for="address" style="font-size: 20px;">Company's Address</label><br>
+        <input class="input is-primary" type="text" placeholder="Flat No/Plot No/Building Name"
+        id="buildingName" name="buildingName" 
+        #buildingName="ngModel" required [(ngModel)]="thirdform.buildingName">
+        <div *ngIf="!buildingName?.valid && (buildingName?.dirty || buildingName?.touched)" class="error-message">
+            <div *ngIf="buildingName.errors?.required">
+                Building name is required
+            </div>
+          </div>
+    </div>
+    <br>
+    <div class="control">
+        <div class="select is-primary">
+            <select class="select1" (change)="update($event)" >
+              <option value="default">Select State</option>
+              <option *ngFor="let city of thirdform.cities" value="{{city.isoCode}}">{{city.name}}</option>
+            </select>
+            
+        </div>
+        
+    </div>
+    <br>
+    <div class="control">
+        <div class="select is-primary" >
+            <select class="select1" id="areas" name="areas"   
+             (change)="updateCity($event)" >
+                <option value="default">Select City</option>
+                <option *ngFor="let area of thirdform.areas" value="{{area.name}}">{{area.name}}</option>
+              </select>
+            <!--  <div *ngIf="!areas?.valid && (areas?.dirty || areas?.touched)" class="error-message">
+                <div *ngIf="areas.errors?.required">
+                    City is required
+                </div>
+              </div> -->
+        </div>
+    </div><br><br>
+    <div class="buttons">
+        <button class="button is-success is-outlined" (click)="secondform()">Back</button>
+        <button class="button is-success" [disabled]="!thirdForm.valid" >Submit</button>
+    </div><br><br>
+  </form>
+
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,350 @@
+p {
+    margin: 0;
+}
+
+/* * {
+    font-family: "Fira Sans", sans-serif !important;
+} */
+
+.logo-box {
+    padding: 3rem 15rem;
+    background-color: #fff;
+}
+
+.logo-box img {
+    height: 3.5rem;
+}
+
+.main-body {
+    max-width: 95rem;
+    font-size: 1.6rem;
+    margin: 5rem auto;
+    /* background-color: #f5ffeb; */
+    /* border: 1px solid #00b200; */
+    border-radius: 4px;
+    /* border: .5px solid rgb(230, 230, 230); */
+}
+
+.header {
+    /* background-color: blue; */
+    background-image: linear-gradient(to top left, #F6C6EA, #C490E4 );
+    /* background-color: #4d2c53; */
+    /* background-color: #2c5153; */
+    /* background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(https://image.shutterstock.com/image-vector/competition-people-robots-jobs-technological-600w-1006220329.jpg); */
+    background-size: cover;
+    background-position: top;
+    border-radius: 15px;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    margin-bottom: 5rem;
+    position: relative;
+    animation: moveUp 1s ease-out;
+    box-shadow: 0px 5px 10px 0 #c6c6c6;
+}
+
+/* #4e4751
+#373538
+#2c5346
+#2c5153
+#4d2c53
+#ba3b3b */
+
+@keyframes moveUp {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+ 
+@keyframes moveUpDown {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    60%{
+        transform: translateY(-1.5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+.main-heading {
+    display: flex;
+    align-items: center;
+    padding: 1rem 4rem;
+    padding-bottom: 2rem;
+    justify-content: space-between;
+    /* color: #444; */
+    /*color: #F9F9F9;
+    font-size: 3.2rem;
+    font-weight: 700;*/
+}
+.heading-jobsite
+{
+    color:#f9f9f9;
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+.sub-text{
+    color: rgb(248, 248, 248);
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.salary {
+    padding: 1rem 4rem;
+    /* color: #333; */
+    color: #F9F9F9;
+    font-weight: 500;
+    font-size: 2.3rem;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+} 
+
+.apply-by{
+    margin-left: auto;
+    /* background-color: rgb(236, 236, 236); */
+    /* background-color: #FEA82F; */
+    background-color: inherit;
+    font-size: 1.7rem;
+    font-weight: 500;
+    /* color: #555; */
+    color: #9d4edd;
+    border: 1.5px solid #9d4edd;
+    padding: 15px;
+    display: flex;
+    right: 0px;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.apply-by-date {
+    padding-left: .7rem;
+}
+
+.salary-openings {
+    margin: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: .4rem;
+    background-color: inherit;
+    border: 1.5px solid #9d4edd;
+    padding: .3rem;
+    /* color: #555; */
+    color: #9d4edd;
+}
+
+.separate-line {
+    position: relative;
+}
+
+.separate-line hr{
+    border: 0;
+    height: .5px;
+    position: absolute;
+    width: 80rem;
+    right: 0px;
+    background-color: rgb(230, 230, 230);
+}
+
+
+.icon {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    stroke-width: 0;
+    stroke: currentColor;
+    /* fill: #555; */
+    fill: #9d4edd;
+}
+
+.details {
+    /* background-color: #7fff001a; */
+    background-color: #CDF0EA;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0 #c6c6c6;
+    transition: all .3s;
+    animation: moveUpDown 1s ease-out .75s;
+    animation-fill-mode: backwards;
+}
+
+.details:hover {
+    transform: translateY(-20px);
+}
+
+.candidate-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail {
+    display: flex;
+    margin: 2rem;
+    /* margin-right: 4rem; */
+    /* padding: 3rem; */
+}
+
+.detail-main {
+    padding: 0 1.5rem;
+}
+
+.detail-heading {
+    color: rgb(106, 106, 106);
+    font-size: 1.3rem;
+}
+
+.details-desc {
+    color: #333;
+    font-weight: 300;
+}
+
+.work-details {
+    display: flex;
+}
+
+.share {
+    /* background-color: #ffbf5e;
+    padding: 10px;
+    padding-right: 60px; */
+    /* border-radius: 5px 0px 0px 5px; */
+    position: fixed;
+    right: 10px;
+    top: 30%;
+    width: 40px;
+    /* height: 100px; */
+}
+
+.share ul{
+    list-style: none;
+}
+
+.fa {
+    padding: 10px;
+    font-size: 18px;
+    width: 40px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+    background-color: #55ACEE;
+    color: white;
+}
+
+.fa-whatsapp {
+    background: #45a605;
+    color: white;
+}
+
+.fa-envelope {
+    background: #dc483c;
+    color: white;
+}
+
+.fa-copy {
+    background-color: #333;
+    color: white;
+}
+
+/* .share ul li::before {
+    content: "";
+} */
+
+@media screen and (min-width: 550px){
+    .apply-btn-mobile{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 700px){
+    .main-body {
+        border: none;
+        margin-top: 0rem;
+    }
+    .header {
+      padding: 0;
+      padding-bottom: 5rem;
+      border-radius: 0;
+      margin-bottom: -10px;
+      z-index: -1;
+    }
+    .middle {
+        padding: 0;
+    }
+    .details {
+    padding: 0;
+    }
+    .share {
+        position: static;
+        margin: 0px auto 50px auto;
+    }
+    .share ul {
+        display: flex;
+        justify-content: center;
+        /* margin: 1px; */
+    }
+  }
+
+@media screen and (max-width: 550px){
+    .apply-btn{
+        display: none;
+    }
+
+    .apply-btn-mobile{
+        background-color: #FF616D;
+        border: none;
+        height: 50px;
+        width: 100%;
+        position: fixed;
+        bottom: 0px;
+        color: #f9f9f9;
+        font-weight: 500;
+        cursor: pointer;
+        font-size: 2.4rem;
+        font-family: inherit;
+        font-style: inherit;
+    }
+
+    .apply-by svg{
+        display: none;
+    }
+
+    .apply-by{
+        padding: .3rem;
+        border-radius: 5px;
+        margin-right: auto;
+    }
+
+    .apply-by-date{
+        padding: .1rem;
+    }
+
+    .salary-openings {
+        display: block;
+        font-size: 1.7rem;
+        border-radius: 5px;
+    }
+
+    .monna {
+        flex: 0 0 100%;
+    }
+}

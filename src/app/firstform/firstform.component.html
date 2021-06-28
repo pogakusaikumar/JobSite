@@ -1,0 +1,185 @@
+<app-header></app-header>
+<div class="container">
+    <p style="font-size: 30px;"><b>Post Job</b></p><br>
+    
+     
+    <div class="tabs is-large">
+        <ul>
+          <li class="is-active"><a>1.Basic Details</a></li>
+          <li ><a>2.Job Details</a></li>
+          <li><a>3.Interview Information</a></li>
+          
+        </ul>
+    </div>
+    <form #firstForm="ngForm" (ngSubmit)="second()" novalidate>
+    <div class="control error">
+            <p style="font-size: 20px;"><b>Job Role</b></p>
+            <input class="input is-primary" type="text" placeholder="Enter Role" 
+            id="jobRole" name="jobRole"  #jobRole="ngModel" required  [(ngModel)]="firstform.jobRole">
+          
+          <div *ngIf="!jobRole?.valid && (jobRole?.dirty || jobRole?.touched)" class="error-message">
+            <div *ngIf="jobRole.errors?.required">
+              Job Role is required
+            </div>
+          </div>
+          
+          <br><br>
+          <p style="font-size: 20px;"><b>Job Title</b></p>
+          <input class="input is-primary" type="text" placeholder="Enter Title" 
+          id="jobTitle" name="jobTitle"  #jobTitle="ngModel" required  [(ngModel)]="firstform.jobTitle">
+          <div *ngIf="!jobTitle?.valid && (jobTitle?.dirty || jobTitle?.touched)" class="error-message">
+            <div *ngIf="jobTitle.errors?.required">
+              Job Title is required
+            </div>
+          </div>
+          
+          <br><br>
+      <p style="font-size: 18px;" ><input type="checkbox" id="workFromHome" name="workFromHome" [(ngModel)]="firstform.workFromHome">
+      This job allows work from home</p>
+    
+    </div><br><br>
+        <div class="control error">
+            <p style="font-size: 20px;"><b>Type Of Job</b></p>
+            <label class="radio">
+              <input type="radio" name="jobType" id="jobType" value="Full Time" #jobType="ngModel" required [(ngModel)]="firstform.jobType" >
+              Full Time
+            </label>
+            <label class="radio">
+              <input type="radio" name="jobType" id="jobType" value="Part Time" #jobType="ngModel" required [(ngModel)]="firstform.jobType">
+              Part Time
+            </label>
+          
+          <div *ngIf="!jobType?.valid && (jobType?.dirty || jobType?.touched)" class="error-message">
+            <div *ngIf="jobType.errors?.required">
+              jobType is required
+            </div>
+          </div>
+         
+         
+          
+        </div>
+        
+      
+        <div class="control error">
+            <p style="font-size: 20px;"><b>Shift</b></p>
+            <label class="radio">
+              <input type="radio" name="shift" id="shift" value="Day Shift" #shift="ngModel" required [(ngModel)]="firstform.shift"  >
+              Day Shift
+            </label>
+            <label class="radio">
+              <input type="radio" name="shift" id="shift" value="Night Shift" #shift="ngModel" required [(ngModel)]="firstform.shift">
+              Night Shift
+            </label>
+          
+          <div *ngIf="!shift?.valid && (shift?.dirty || shift?.touched)" class="error-message">
+            <div *ngIf="shift.errors?.required">
+              Shift is required
+            </div>
+          </div>
+         
+         
+          
+          </div>
+        
+        <div class="input1">
+           
+            
+                <input class="input is-primary" type="number" id="minSalary" name="minSalary"  placeholder="Minsalary/month" #minSalary="ngModel" required [(ngModel)]="firstform.minSalary">
+                <div *ngIf="!minSalary?.valid && (minSalary?.dirty || minSalary?.touched)" class="error-message">
+                  <div *ngIf="minSalary.errors?.required">
+                    Mininum Salary is required
+                  </div>
+                </div>
+                
+                <input class="input is-primary" type="number" id="maxSalary" name="maxSalary" placeholder="Maxsalary/month" #maxSalary="ngModel" required [(ngModel)]="firstform.maxSalary">
+                
+                <div *ngIf="!maxSalary?.valid && (maxSalary?.dirty || maxSalary?.touched)" class="error-message">
+                  <div *ngIf="maxSalary.errors?.required">
+                    Maximum Salary is required
+                  </div>
+                </div>
+                
+                <input class="input is-primary" type="number" id="openings" name="openings" placeholder="No Of Openings" #openings="ngModel" required [(ngModel)]="firstform.openings">
+                <div *ngIf="!openings?.valid && (openings?.dirty || openings?.touched)" class="error-message">
+                  <div *ngIf="openings.errors?.required">
+                    No of Openings is required
+                  </div>
+                </div>
+              </div>
+        
+        <div class="control error">
+          
+            <input class="input is-primary" type="text" placeholder="Working Days" id="workingDays" name="workingDays" #workingDays="ngModel" required [(ngModel)]="firstform.workingDays">
+            <div *ngIf="!workingDays?.valid && (workingDays?.dirty || workingDays?.touched)" class="error-message">
+              <div *ngIf="workingDays.errors?.required">
+                Working Days is required
+              </div>
+            </div>
+            
+            <input class="input is-primary" type="text" placeholder="Work Timings" id="workTimings" name="workTimings" #workTimings="ngModel" required [(ngModel)]="firstform.workTimings">
+            <div *ngIf="!workTimings?.valid && (workTimings?.dirty || workTimings?.touched)" class="error-message">
+              <div *ngIf="workTimings.errors?.required">
+                Work Timings is required
+              </div>
+            </div>
+          </div>
+        
+        <div class="control error">
+            <input class="input is-primary" type="text" placeholder="Mininum education"
+            id="minEducation" name="minEducation" #minEducation="ngModel" required [(ngModel)]="firstform.minEducation">
+            <div *ngIf="!minEducation?.valid && (minEducation?.dirty || minEducation?.touched)" class="error-message">
+              <div *ngIf="minEducation.errors?.required">
+                Mininum Education is required
+              </div>
+            </div>
+          </div>
+        <br>
+        <div class="control error">
+            <p style="font-size: 20px;"><b>Experience</b></p>
+            
+            <label class="radio">
+              <input type="radio" id="experience" name="experience" value="Fresher" #experience="ngModel" required [(ngModel)]="firstform.experience" >
+              Fresher
+            </label>
+            <label class="radio">
+              <input type="radio" id="experience" name="experience" value="Experienced" #experience="ngModel" required [(ngModel)]="firstform.experience" >
+              Experienced
+            </label>
+        
+          <div *ngIf="!experience?.valid && (experience?.dirty || experience?.touched)" class="error-message">
+            <div *ngIf="experience.errors?.required">
+              Gender is required
+            </div>
+          </div>
+         
+         
+        
+          </div><br>
+        <div class="control error">
+            <p style="font-size: 20px;"><b>Gender</b></p>
+            
+            <label class="radio">
+              <input type="radio" id="gender" name="gender" value="Male" #gender="ngModel" required [(ngModel)]="firstform.gender"  >
+              Male
+            </label>
+            <label class="radio">
+              <input type="radio" id="gender" name="gender" value="Female" #gender="ngModel" required [(ngModel)]="firstform.gender" >
+              Female
+            </label>
+            <label class="radio">
+                <input type="radio" id="gender" name="gender" value="Other" #gender="ngModel" required [(ngModel)]="firstform.gender">
+                Other
+              </label>
+              <div *ngIf="!gender?.valid && (gender?.dirty || gender?.touched)" class="error-message">
+                <div *ngIf="gender.errors?.required">
+                  Gender is required
+                </div>
+              </div>
+          </div>
+        <br><br>
+        <div class="buttons">
+            <button class="button is-success is-outlined">Back</button>
+            <button class="button is-success"  [disabled]="!firstForm.valid" >Continue</button>
+          </div><br><br>
+      </form>
+</div>

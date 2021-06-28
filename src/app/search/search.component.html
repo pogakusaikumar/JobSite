@@ -1,0 +1,223 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">`
+<div class="logo_container">
+<a href="https://simplifyvms.com/">
+<img alt="Simplify VMS" id="logo"  src="https://simplifyvms.com/wp-content/uploads/2020/03/Screen-Shot-2020-03-23-at-07.11.18.png" > 
+</a>
+<button class="button is-primary" (click)="postjob()" style="float: right;margin-right: 2vw;">
+    Post job
+</button>
+</div>
+<hr>
+<span style="margin-left:32vw"><input style="height:4.5vh;width:20vw;" type="text" [(ngModel)]="freetext"><span style="padding-left: 5px;"></span><button (click)="freeTextSearch();viewMode='freetext'" class="btn btn-primary">Search</button></span>
+<div class="search_filter">
+  <mat-form-field appearance="outline">
+  <mat-label>Job Category</mat-label>
+  <input matInput list="job-type-drop-down" type="text" [(ngModel)]="jobType">
+  <datalist id="job-type-drop-down">
+  <option *ngFor="let c of jobTypes | FilterPipe: jobType" value="{{c}}">
+  </datalist>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+  <mat-label>Location</mat-label>
+  <input matInput list="location-drop-down" type="text" [(ngModel)]="location">
+  <datalist id="location-drop-down">
+  <option *ngFor="let c of locations | FilterPipe: location" value="{{c}}">
+  </datalist>
+  </mat-form-field>
+</div>
+<br>
+<ul class="filter nav nav-pills">
+  <li [class.active]="viewMode=='All'"><a (click)="viewMode='All';getJobs('All')">All</a></li>
+  <li [class.active]="viewMode=='Work from home'"><a (click)="viewMode='Work from home';getJobs('Work from home')">Work from home</a></li>
+  <li [class.active]="viewMode=='Part time'"><a (click)="viewMode='Part time';getJobs('Part time')">Part time</a></li>
+  <li [class.active]="viewMode=='Night shift'"><a (click)="viewMode='Night shift';getJobs('Night shift')">Night shift</a></li>
+  <li [class.active]="viewMode=='Jobs for women'"><a (click)="viewMode='Jobs for women';getJobs('Jobs for women')">Jobs for women</a></li>
+  <li [class.active]="viewMode=='Jobs for freshers'"><a (click)="viewMode='Jobs for freshers';getJobs('Jobs for freshers')">Jobs for freshers</a></li>
+</ul>
+<br>
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="''"></div>
+    <div *ngSwitchCase="'freetext'">
+        <mat-grid-list cols="2" rowHeight="4:1">
+            <mat-grid-tile *ngFor="let x of obj| paginate: { itemsPerPage: count, currentPage: p }">
+             <mat-card>
+               <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+               <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+                <br>
+                <span style="color: grey;font-size: smaller;">Exp</span>
+                <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+                <span style="float:right"><button class="btn btn-success" (click)="apply(x.post_id)">Apply Now</button></span><br>
+               {{x.experience}}
+               <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+               <hr>
+               {{x.buildingName+", "}}{{x.area}}
+               <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+               <span *ngFor="let f of filters(x)">
+                 <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+                 <span style="padding-left: 10px;"></span>
+                 </span>
+             </mat-card>
+             </mat-grid-tile>
+       </mat-grid-list>
+       <div class="text-center">
+         <pagination-controls (pageChange)="p = $event"></pagination-controls>
+       </div>
+    </div>
+  <div *ngSwitchCase="'All'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+         <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.post_id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+              </span>
+          </mat-card>
+          </mat-grid-tile>
+    </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Work from home'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+            </span>
+          </mat-card>
+    </mat-grid-tile>
+    </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Part time'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+            </span>
+          </mat-card>
+         </mat-grid-tile>
+    </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Night shift'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+            </span>
+          </mat-card>
+         </mat-grid-tile>
+    </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Jobs for women'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+            </span>
+          </mat-card>
+         </mat-grid-tile>
+         </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+  <div *ngSwitchCase="'Jobs for freshers'">
+    <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile *ngFor="let x of loopJobs()| paginate: { itemsPerPage: count, currentPage: p }">
+          <mat-card>
+            <span style="color: lightseagreen;font-weight: bold;">{{x.jobTitle}}</span><span style="float:right"><i class="fa fa-inr" aria-hidden="true"></i>{{x.maxSalRY}}</span><br>
+            <span style="color: grey;font-size: small;">{{x.companyName}}</span>
+             <br>
+             <span style="color: grey;font-size: smaller;">Exp</span>
+             <span style="padding-left: 50px;color: grey;font-size: smaller;">Education</span>
+             <span style="float:right"><button class="btn btn-success" (click)="apply(x.id)">Apply Now</button></span><br>
+            {{x.experience}}
+            <span style="padding-left: 20px;">{{x.minEducation}}</span> 
+            <hr>
+            {{x.buildingName+", "}}{{x.area}}
+            <span style="float:right"><i class="fa fa-briefcase" aria-hidden="true"></i>{{x.openings}} openings</span><br>
+            <span *ngFor="let f of filters(x)">
+              <div style="border:1px solid lightgray;border-radius: 5px;display: inline;background-color:lightgray;">{{f}}</div>
+              <span style="padding-left: 10px;"></span>
+            </span>
+          </mat-card>
+         </mat-grid-tile>
+         </mat-grid-list>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

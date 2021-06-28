@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="container">
+
+    <p style="font-size: 30px;"><b>Post Job</b></p><br>
+    
+     
+    <div class="tabs is-large">
+        <ul>
+          <li ><a>1.Basic Details</a></li>
+          <li class="is-active"><a>2.Job Details</a></li>
+          <li><a>3.Interview Information</a></li>
+          
+        </ul>
+    </div>
+    <form #secondForm="ngForm" (ngSubmit)="thirdform()" novalidate>
+    <p style="font-size: 20px;"><b>Job Details</b></p>
+    <p>Please select compulsory requirements below 👇</p>
+    <br>
+    <br>
+    <p>Tap to select tags</p>
+   
+   <div class="row">
+        <div class="items-collection">
+            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of skills">
+                <div class="info-block block-info clearfix" >
+                    <div data-toggle="buttons" class="btn-group bizmoduleselect">
+                        <label class="btn btn-default">
+                            <div class="itemcontent" >
+                                <input type="checkbox" name="skills"   id="skills" [(ngModel)]="item.checked" (change)="changeSelection()" >
+                                <h5>{{item.name}}</h5>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div><br>
+    <div class="control">
+      Selected Skills are <b>{{skillsname}}</b>
+    </div><br>
+
+<div class="control">
+    <p style="font-size: 20px;"><b>English required</b></p>
+    <p>Thoda English candidates can read and understand basic English</p>
+    <label class="radio">
+      <input type="radio" name="englishRequired" id="englishRequired"  value="No English" #englishRequired="ngModel" required [(ngModel)]="secondform.englishRequired">
+      No English
+    </label>
+    <label class="radio">
+      <input type="radio"  id="englishRequired" name="englishRequired"   value="Thoda English" #englishRequired="ngModel" required [(ngModel)]="secondform.englishRequired">
+      Thoda English
+    </label>
+    <label class="radio">
+        <input type="radio" id="englishRequired" name="englishRequired"  value="Good English" #englishRequired="ngModel" required [(ngModel)]="secondform.englishRequired">
+        Good English
+      </label>
+      <label class="radio">
+        <input type="radio" id="englishRequired" name="englishRequired"  value="Fluent English" #englishRequired="ngModel" required [(ngModel)]="secondform.englishRequired">
+        Fluent English
+      </label>
+      <div *ngIf="!englishRequired?.valid && (englishRequired?.dirty || englishRequired?.touched)" class="error-message">
+        <div *ngIf="englishRequired.errors?.required">
+          English Required is required
+        </div>
+      </div>
+  </div>
+<br>
+<br>
+  <div class="control">
+      <p style="font-size: 18px;">Job Description</p>
+    <textarea class="textarea" id="jobDescription" name="jobDescription"  placeholder="" #jobDescription="ngModel" required [(ngModel)]="secondform.jobDescription"></textarea>
+    <div *ngIf="!jobDescription?.valid && (jobDescription?.dirty || jobDescription?.touched)" class="error-message">
+      <div *ngIf="jobDescription.errors?.required">
+        Job description is required
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="control">
+      <p><b>Is there any security deposit charged to the candidate (for uniform, kit, bike etc) ? *</b></p>
+      <label class="radio">
+        <input type="radio" id="deposit" name="deposit"  value="Yes" #deposit="ngModel" required [(ngModel)]="secondform.deposit">  
+        Yes
+      </label>
+      <label class="radio">
+        <input type="radio" id="deposit" name="deposit"  value="No" #deposit="ngModel" required [(ngModel)]="secondform.deposit">
+        No
+      </label>
+      <div *ngIf="!deposit?.valid && (deposit?.dirty || deposit?.touched)" class="error-message">
+        <div *ngIf="deposit.errors?.required">
+          Security deposit charged is required
+        </div>
+      </div>
+  </div>
+  <br><br><br><br>
+  <div class="buttons">
+    <button class="button is-success is-outlined" (click)="firstform()">Back</button>
+    <button class="button is-success" [disabled]="!secondForm.valid">Continue</button>
+  </div><br><br>
+  
+</form>
+</div>

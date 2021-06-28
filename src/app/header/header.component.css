@@ -1,0 +1,16 @@
+.navbar{
+    height:80px;
+}
+
+.navbar-start>.navbar-item{
+    font-size: 22px;
+    padding:5px 5px;
+    margin:10px;
+}
+
+.navbar-dropdown>.navbar-item{
+    font-size: 15px;
+}
+.navbar-end>.navbar-item{
+   float: right;
+}

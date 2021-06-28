@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+}
+
+@media screen and (max-width: 700px){
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+    line-height: 1.4 !important;
+    /* font-family: 'Signika', sans-serif !important; */
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #F9F9F9;
+}
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+.btn-local{
+  padding: .9rem 2.5rem;
+  color: #F9F9F9;
+  border: none;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  /* background-color: #FF616D; */
+  background-color: #9d4edd;
+  border-radius: .5rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  transition: all .2s;
+}
+
+.btn-local:hover {
+  box-shadow: rgba(0, 0, 0, 0.39) 0px 2px 5px 0px;
+  color: #F9F9F9;
+  transform: translateY(-1px);
+}
+
+.btn-local:active, .btn-local:focus {
+    color: #F9F9F9;
+  outline: none;
+}
+
+.error-text {
+  color: red;
+  font-size: 1.4rem;
+  margin: 10rem .5rem;
+}
+
+.btn-local-disabled {
+  padding: .9rem 2.5rem;
+  color: #fff;
+  border: none;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: 500;
+  background-color: #9d4edd;
+  border-radius: .5rem;
+  cursor: not-allowed;
+  font-size: 1.7rem;
+}
+
+/* To override mat-dialog styles */
+/* .mat-dialog-container {
+  padding: 0 !important;
+} */

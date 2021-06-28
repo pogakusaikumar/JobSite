@@ -1,0 +1,39 @@
+<div class="main">
+    <div class="header-box">
+        <p class="heading-apply">Please fill your details to apply</p>
+    </div>
+    <hr style="border-bottom: none">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" autocomplete="off">
+        <!-- <input type="text" style="display: none;" autofocus="autofocus"> -->
+        <div style="max-width: 0; max-height: 0; overflow: hidden;">
+            <input autofocus="true" />
+        </div>
+        <input
+        type="text" 
+        name="name" 
+        ngModel 
+        placeholder="Name" 
+        required
+        pattern="[a-zA-Z ]*"
+        #name="ngModel"><br>
+        <span class="error-text" *ngIf="!name.valid && name.touched">*Please enter valid Name</span>
+
+        <input
+        type="text" 
+        name="phoneNumber" 
+        ngModel 
+        placeholder="Mobile No"
+        required
+        pattern = "[0-9]*"
+        minlength="10"
+        maxlength="10"
+        #Mob="ngModel"><br>
+        <span class="error-text" *ngIf="!Mob.valid && Mob.touched">*Please enter valid Mobile Number</span>
+        <!-- <button class="btn" [disabled]="disable" [ngStyle]="{'cursor': disable? 'not-allowed' : 'pointer'}" type="submit">Submit Application</button> -->
+        <!-- <button class="btn" [disabled]="!f.valid" [ngStyle]="{'cursor': !f.valid? 'not-allowed' : 'pointer'}" type="submit">Submit Application</button> -->
+        <button [ngClass]="f.valid ? 'btn' : 'btn-disabled'" [disabled]="!f.valid" type="submit">Submit Application</button>
+    </form>
+</div>
+
+
+<!-- (input)="validOrNot($event)"  -->
