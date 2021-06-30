@@ -19,22 +19,31 @@
     </div>
     <div class="control">
         <input class="input is-primary" type="text" id="companyName" name="companyName" placeholder="Company's Name" 
-         #companyName="ngModel" required [(ngModel)]="thirdform.companyName">
+         #companyName="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+$" [(ngModel)]="thirdform.companyName">
+         
          <div *ngIf="!companyName?.valid && (companyName?.dirty || companyName?.touched)" class="error-message">
             <div *ngIf="companyName.errors?.required">
                 Company name is required
+            </div>
+            <div *ngIf="companyName.errors?.pattern">
+              Only characters are allowed
             </div>
           </div>
     </div><br>
     <div class="control">
         <input class="input is-primary" type="text" id="recruitersName" name="recruitersName"
          placeholder="Recruiter's Name"
-          #recruitersName="ngModel" required [(ngModel)]="thirdform.recruitersName">
+          #recruitersName="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+$" [(ngModel)]="thirdform.recruitersName">
+          
           <div *ngIf="!recruitersName?.valid && (recruitersName?.dirty || recruitersName?.touched)" class="error-message">
             <div *ngIf="recruitersName.errors?.required">
                 Recruiters name is required
             </div>
+            <div *ngIf="recruitersName.errors?.pattern">
+              Only characters are allowed
+            </div>
           </div>
+          
     </div><br>
     <div class="control">
         <input class="input is-primary" type="number" id="hRwhatsappNumber" name="hRwhatsappNumber" 
@@ -71,7 +80,7 @@
         <label for="address" style="font-size: 20px;">Company's Address</label><br>
         <input class="input is-primary" type="text" placeholder="Flat No/Plot No/Building Name"
         id="buildingName" name="buildingName" 
-        #buildingName="ngModel" required [(ngModel)]="thirdform.buildingName">
+        #buildingName="ngModel" required  [(ngModel)]="thirdform.buildingName">
         <div *ngIf="!buildingName?.valid && (buildingName?.dirty || buildingName?.touched)" class="error-message">
             <div *ngIf="buildingName.errors?.required">
                 Building name is required
@@ -107,10 +116,24 @@
     <div class="buttons">
         <button class="button is-success is-outlined" (click)="secondform()">Back</button>
         <button class="button is-success" [disabled]="!thirdForm.valid" >Submit</button>
+        
+        
+
     </div><br><br>
   </form>
-
 </div>
+<!--<ng-container *ngIf="open_modal">
+  <article class="message is-success">
+    <div class="message-header">
+      <p>Success!</p>
+      <button class="delete" aria-label="delete" ></button>
+    </div>
+    <div class="message-body">
+    Job posted successfully.
+    </div>
+</article>
+</ng-container>
+-->
 
 
 

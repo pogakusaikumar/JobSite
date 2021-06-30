@@ -21,7 +21,6 @@ export class ThirdformComponent implements OnInit {
   
 cityVal='';
 areaVal='';
-requiredSkills:string="";
 
  jobRole='';
   ngOnInit(): void {
@@ -63,7 +62,6 @@ requiredSkills:string="";
 
     console.log(userobj1);
     var jobRole=userobj1.jobRole;
-    var jobTitle=userobj1.jobTitle;
     var type=userobj1.jobType;
     var shift=userobj1.shift;
     var gender=userobj1.gender;
@@ -87,22 +85,20 @@ requiredSkills:string="";
     console.log(userobj1);
     var skills=userobj1.skills;
     var englishRequired=userobj1.englishRequired;
-    var securityDepositCharged=userobj1.deposit;
+    var securityDepositCharged=userobj1.securityDepositCharged;
     var jobDescription=userobj1.jobDescription;
-  
-   
-    for(var value of skills)
-    {
-      this.requiredSkills=this.requiredSkills+value+" ";
-    }
-   
- console.log(this.requiredSkills);
+
     
     console.log(typeof(this.thirdform.hRwhatsappNumber),this.thirdform.hRwhatsappNumber);
+    console.log(maxSalRY,type);
+    console.log(skills);
+    var requiredSkills=skills.toString();
+    
+    console.log(requiredSkills);
     }
     
     
-      this.http.post("http://localhost:9090/addJob",{
+    this.http.post("http://localhost:9090/addJob",{
       "jobTitle": jobTitle,
       "area": this.areaVal,
       "buildingName" : this.thirdform.buildingName,
@@ -121,7 +117,7 @@ requiredSkills:string="";
       "openings": openings,
       "recieveApplicationsFrom": "EntireCity",
       "recruitersName": this.thirdform.recruitersName,
-      "requiredSkills": this.requiredSkills,
+      "requiredSkills":requiredSkills,
       "securityDepositCharged": securityDepositCharged,
       "shift": shift,
       "type":type,
@@ -152,4 +148,3 @@ export class ThirdForm{
   cities:any;
  areas:any;
 }
-

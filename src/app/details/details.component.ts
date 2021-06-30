@@ -13,8 +13,16 @@ export class DetailsComponent {
   // @Output() getJobId = new EventEmitter<{newJobId: string}>();
   heading: string = 'UI/ UX developer'
   id = this.route.snapshot.params['id']
+  copyURL="http://localhost:9090/"+this.id;
   constructor(public dialog: MatDialog,private route:ActivatedRoute,private http:HttpClient) {}
   data:any
+  status=false
+  copyAlert(){
+    this.status = true;
+    setTimeout(()=> {
+      this.status = false;
+    }, 1000)
+  }
   applyNow(){
     this.dialog.open(ApplyComponent, {
       width: '350px',

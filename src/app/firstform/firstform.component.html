@@ -12,27 +12,36 @@
         </ul>
     </div>
     <form #firstForm="ngForm" (ngSubmit)="second()" novalidate>
+      <div class="control error">
+        <p style="font-size: 20px;"><b>Job Title</b></p>
+        <input class="input is-primary" type="text" placeholder="Enter Role" 
+        id="jobTitle" name="jobTitle"  #jobTitle="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+$" [(ngModel)]="firstform.jobTitle">
+      
+      <div *ngIf="!jobTitle?.valid && (jobTitle?.dirty || jobTitle?.touched)" class="error-message">
+        <div *ngIf="jobTitle.errors?.required">
+          Job title is required
+        </div>
+        <div *ngIf="jobTitle.errors?.pattern">
+          Only characters are allowed
+        </div>
+      </div>
+
+</div><br>
+    
+      
     <div class="control error">
             <p style="font-size: 20px;"><b>Job Role</b></p>
             <input class="input is-primary" type="text" placeholder="Enter Role" 
-            id="jobRole" name="jobRole"  #jobRole="ngModel" required  [(ngModel)]="firstform.jobRole">
+            id="jobRole" name="jobRole"  #jobRole="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+$" [(ngModel)]="firstform.jobRole">
           
           <div *ngIf="!jobRole?.valid && (jobRole?.dirty || jobRole?.touched)" class="error-message">
             <div *ngIf="jobRole.errors?.required">
               Job Role is required
             </div>
-          </div>
-          
-          <br><br>
-          <p style="font-size: 20px;"><b>Job Title</b></p>
-          <input class="input is-primary" type="text" placeholder="Enter Title" 
-          id="jobTitle" name="jobTitle"  #jobTitle="ngModel" required  [(ngModel)]="firstform.jobTitle">
-          <div *ngIf="!jobTitle?.valid && (jobTitle?.dirty || jobTitle?.touched)" class="error-message">
-            <div *ngIf="jobTitle.errors?.required">
-              Job Title is required
+            <div *ngIf="jobRole.errors?.pattern">
+              Only characters are allowed
             </div>
           </div>
-          
           <br><br>
       <p style="font-size: 18px;" ><input type="checkbox" id="workFromHome" name="workFromHome" [(ngModel)]="firstform.workFromHome">
       This job allows work from home</p>
@@ -91,45 +100,63 @@
                   </div>
                 </div>
                 
-                <input class="input is-primary" type="number" id="maxSalary" name="maxSalary" placeholder="Maxsalary/month" #maxSalary="ngModel" required [(ngModel)]="firstform.maxSalary">
+                <input class="input is-primary" type="number" id="maxSalary" name="maxSalary"
+                 placeholder="Maxsalary/month" #maxSalary="ngModel" required 
+                 [(ngModel)]="firstform.maxSalary" >
                 
                 <div *ngIf="!maxSalary?.valid && (maxSalary?.dirty || maxSalary?.touched)" class="error-message">
                   <div *ngIf="maxSalary.errors?.required">
                     Maximum Salary is required
                   </div>
+                  <div *ngIf="maxSalary.errors?.salaryvalidators">
+                    Minimum salary should be less than maximum salary
+                  </div>
                 </div>
                 
                 <input class="input is-primary" type="number" id="openings" name="openings" placeholder="No Of Openings" #openings="ngModel" required [(ngModel)]="firstform.openings">
-                <div *ngIf="!openings?.valid && (openings?.dirty || openings?.touched)" class="error-message">
+                <div *ngIf="!openings?.valid && (openings?.dirty || openings?.touched)" pattern="^[1-9]+$" class="error-message">
                   <div *ngIf="openings.errors?.required">
                     No of Openings is required
+                  </div>
+                  <div *ngIf="openings.errors?.pattern">
+                    Openings cannot be zero
                   </div>
                 </div>
               </div>
         
         <div class="control error">
           
-            <input class="input is-primary" type="text" placeholder="Working Days" id="workingDays" name="workingDays" #workingDays="ngModel" required [(ngModel)]="firstform.workingDays">
+            <input class="input is-primary" type="text" placeholder="Working Days" id="workingDays" name="workingDays" 
+            #workingDays="ngModel" required pattern="[a-zA-Z][a-zA-Z ]+$" [(ngModel)]="firstform.workingDays">
             <div *ngIf="!workingDays?.valid && (workingDays?.dirty || workingDays?.touched)" class="error-message">
               <div *ngIf="workingDays.errors?.required">
                 Working Days is required
               </div>
+              <div *ngIf="workingDays.errors?.pattern">
+                Only characters are allowed
+              </div>
             </div>
             
-            <input class="input is-primary" type="text" placeholder="Work Timings" id="workTimings" name="workTimings" #workTimings="ngModel" required [(ngModel)]="firstform.workTimings">
+            <input class="input is-primary" type="text" placeholder="Work Timings" id="workTimings" name="workTimings" 
+            #workTimings="ngModel" required  [(ngModel)]="firstform.workTimings">
             <div *ngIf="!workTimings?.valid && (workTimings?.dirty || workTimings?.touched)" class="error-message">
               <div *ngIf="workTimings.errors?.required">
                 Work Timings is required
               </div>
+              
             </div>
           </div>
         
         <div class="control error">
             <input class="input is-primary" type="text" placeholder="Mininum education"
-            id="minEducation" name="minEducation" #minEducation="ngModel" required [(ngModel)]="firstform.minEducation">
+            id="minEducation" name="minEducation" #minEducation="ngModel" required pattern="^[-_a-zA-Z0-9][-_ a-zA-Z0-9]+$"
+            [(ngModel)]="firstform.minEducation">
             <div *ngIf="!minEducation?.valid && (minEducation?.dirty || minEducation?.touched)" class="error-message">
               <div *ngIf="minEducation.errors?.required">
                 Mininum Education is required
+              </div>
+              <div *ngIf="minEducation.errors?.pattern">
+                Special characters are not allowed
               </div>
             </div>
           </div>

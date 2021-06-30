@@ -11,6 +11,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  postjob()
+  {
+    this.router.navigate(["firstform"]);
+  }
   search()
   {
     this.router.navigate(["search"]);

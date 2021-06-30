@@ -267,7 +267,29 @@ p {
 /* .share ul li::before {
     content: "";
 } */
-
+.toast{
+    position: fixed;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    
+    max-width: 300px;
+    padding: 6px;
+    background: #9d4edd;
+    color: #fff;
+    font-size: 1.6rem;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, top 0.2s, visibility 0.2s;
+}
+.toast-visible {
+    opacity: 1;
+    visibility: visible;
+}
 @media screen and (min-width: 550px){
     .apply-btn-mobile{
         display: none;

@@ -16,13 +16,9 @@ export class SearchComponent {
   location:string="";
   jobTypes:string[]=["web-development","full-stack-development","front-end-dev","back-end-dev","data-science"]
   locations:string[]=["Banglore","Hyderabad","Mumbai","Chennai","Pune"]
-  /*jobs:any=[{"jobCategory":"web-development","jobName":"React Native Developer","companyName":"ININDIA Corporation","salary":"25000","Exp":"Fresher","Education":"Graduate","Address":"JP Nagar, Banglore","openings":"2","filters":["Work from home","Part time"]},
-  {"jobCategory":"web-development","jobName":"Java Spring Engineer","companyName":"INFOSYS","salary":"80000","Exp":"8-11 Years","Education":"Graduate","Address":"Electronic City, Banglore, Bengaluru","openings":"250","filters":["Work from home","Night shift"]},
-  {"jobCategory":"web-development","jobName":"Spark/Azure Engineer","companyName":"INFOSYS","salary":"90000","Exp":"5-15 Years","Education":"Graduate","Address":"Electronic City, Banglore, Bengaluru","openings":"250","filters":["Work from home","Jobs for women"]},
-  {"jobCategory":"web-development","jobName":"Android Developer","companyName":"Yugasys Software Pvt Ltd","salary":"45000","Exp":"2-3 Years","Education":"Graduate","Address":"JP Nagar 3rd phase, Banglore","openings":"1","filters":["Work from home","Jobs for freshers"]},
-  {"jobCategory":"data-science","jobName":"Data Analyst","companyName":"Yugasys Software Pvt Ltd","salary":"40000","Exp":"2-3 Years","Education":"Graduate","Address":"JP Nagar 3rd phase, Banglore","openings":"10","filters":["Work from home","Night shift"]},
-  ]*/
   jobs:any
+  breakpoint!:number
+  ratio!:string
   headers= new HttpHeaders()
   .set('content-type', 'application/json')
   .set('Access-Control-Allow-Origin', '*');
@@ -34,6 +30,36 @@ export class SearchComponent {
   constructor(private http:HttpClient,private router:Router)
   {
   }
+  ngOnInit() {
+    if(window.innerWidth <= 900)
+    {
+      this.breakpoint=1
+      this.ratio="240px"
+    }
+    else{
+      this.breakpoint=2
+      this.ratio="200px"
+    }
+} 
+  onResize(event:any)
+  {
+    if(event.target.innerWidth <= 900)
+    {
+      this.breakpoint=1
+      this.ratio="240px"
+    }
+    else{
+      this.breakpoint=2
+      this.ratio="200px"
+    }
+  }
+  /*getAllJobs()
+  {
+    this.http.get("http://localhost:9090/elasticData",{ 'headers': this.headers }).subscribe(res=>{
+      this.jobs=res
+    })
+    return this.jobs
+  }*/
   postjob()
   {
     this.router.navigate(["firstform"]);
@@ -50,6 +76,7 @@ export class SearchComponent {
   {
     if(this.freetext=="")
     {
+      if(this.jobType!=""&&this.location!=""){
     switch(filter)
     {
       case "All": this.p=1
@@ -59,7 +86,7 @@ export class SearchComponent {
                             this.http.get("http://localhost:9090/filter/findByWorkFromHome/"+this.jobType+"/"+this.location+"/true",{ 'headers': this.headers }).subscribe(response=>{this.jobs=response})
                             break
       case "Part time":  this.p=1
-                         this.http.get("http://localhost:9090/findByPartTime/"+this.jobType+"/"+this.location+"/PartTime",{ 'headers': this.headers }).subscribe(response=>{this.jobs=response})
+                         this.http.get("http://localhost:9090/findByPartTime/"+this.jobType+"/"+this.location+"/Part Time",{ 'headers': this.headers }).subscribe(response=>{this.jobs=response})
                          break
       case "Night shift": this.p=1
                           this.http.get("http://localhost:9090/findByShift/"+this.jobType+"/"+this.location+"/Night",{ 'headers': this.headers }).subscribe(response=>{this.jobs= response})
@@ -73,11 +100,12 @@ export class SearchComponent {
     }
   }
   }
-  loopJobs()
+  }
+  /*loopJobs()
   {
     if(this.freetext!="")
     {
-      let l=[]
+      let l:any
       switch(this.viewMode)
     {
       case "All": l=this.obj;this.p=1;
@@ -131,7 +159,7 @@ export class SearchComponent {
       return l;
     }
      return this.jobs
-  }
+  }*/
   filters(x:any)
   {
     let f=[]
@@ -139,11 +167,11 @@ export class SearchComponent {
     {
       f.push("WorkFromHome");
     }
-    if((<string>x.shift).toLocaleLowerCase()=="night")
+    if((<string>x.shift).toLocaleLowerCase()=="night shift")
     {
       f.push("Night Shift");
     }
-    if((<string>x.type).toLocaleLowerCase()=="parttime")
+    if((<string>x.type).toLocaleLowerCase()=="part time")
     {
       f.push("Part Time");
     }

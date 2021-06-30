@@ -13,7 +13,7 @@
         </div>
         
         <div class="salary">
-            <p class="monna">{{data.maxSalRy}}<span class="sub-text">per month</span></p>
+            <p class="monna">&#8377;{{data.maxSalRY}}<span class="sub-text"> per month</span></p>
             <p class="salary-openings">{{data.openings}} openings</p>
             <div class="apply-by">
                 <svg class="icon icon-calendar"><use xlink:href="#icon-calendar"></use>
@@ -22,7 +22,7 @@
                     </symbol>
                 </svg>
                 <div class="apply-by-date">
-                    <p>Apply by : 26 June</p>
+                    <p>Apply by : 26 July</p>
                 </div>
             </div>
         </div>
@@ -114,10 +114,14 @@
 </div>
 <div class="share">
     <ul>
-        <li><a href="#" title="Share on facebook" class="fa fa-facebook"></a></li>
-        <li><a href="#" title="Share on twitter" class="fa fa-twitter"></a></li>
-        <li><a href="#" title="Share on whatsapp" class="fa fa-whatsapp"></a></li>
-        <li><a href="#" title="Share on gmail" class="fa fa-envelope"></a></li>
-        <li><a href="#" title="Copy URL" class="fa fa-copy"></a></li>
+        <li><a href="https://www.facebook.com/" target="_blank" title="Share on facebook" class="fa fa-facebook"></a></li>
+        <li><a href="https://twitter.com/" target="_blank" title="Share on twitter" class="fa fa-twitter"></a></li>
+        <li><a href="https://web.whatsapp.com/" target="_blank" title="Share on whatsapp" class="fa fa-whatsapp"></a></li>
+        <li><a href="https://mail.google.com/mail/u/1/#inbox?compose=new" target="_blank" title="Share on gmail" class="fa fa-envelope"></a></li>
+        <li><a [cdkCopyToClipboard]="copyURL" (click)="copyAlert()" title="Copy URL" class="fa fa-copy" style="cursor: 
+        pointer;"></a></li>
     </ul>
+</div>
+<div class="toast" [ngClass]="status ? 'toast-visible': 'toast'">
+    <p>URL Copied to clipboard</p>
 </div>

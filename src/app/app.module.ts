@@ -21,6 +21,7 @@ import { DetailsComponent } from './details/details.component';
 import { ApplyComponent } from './apply/apply.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ThankyouComponent
   ],
   imports: [
+    ClipboardModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
